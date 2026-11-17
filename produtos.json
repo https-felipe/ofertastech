@@ -1,1 +1,24 @@
-{"produtos": []}
+{
+  "produtos": [
+    {
+      "numero": 2,
+      "item_id": "MLB_gta6_ps5",
+      "nome": "GTA 6 para PlayStation 5",
+      "preco": "R$ 404,10 no Pix",
+      "desconto": "19%",
+      "link": "https://meli.la/1LfWZjp",
+      "imagem": "img/2.jpg",
+      "data": "16/11/2026"
+    },
+    {
+      "numero": 1,
+      "item_id": "MLB_volante_g29_flow",
+      "nome": "Volante Logitech G29",
+      "preco": "R$ 1.449 no Pix",
+      "desconto": "27%",
+      "link": "https://meli.la/1nLJU2S",
+      "imagem": "img/1.jpg",
+      "data": "16/11/2026"
+    }
+  ]
+}
