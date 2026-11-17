@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ofertas Tech · links</title>
+<meta name="description" content="Games e tech com desconto de verdade. Procure pelo número do vídeo.">
+<link rel="icon" href="avatar.png">
+<style>
+  :root { --navy:#0b1238; --navy2:#060a22; --y1:#ffe066; --y2:#ffb000; --c1:#22d3ee; --c2:#60a5fa;
+          --bg:#f4f6fb; --card:#ffffff; --texto:#121735; --sub:#5b6280; --borda:#e3e7f1; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#070b1f; --card:#10173a; --texto:#eef1ff; --sub:#9aa3c7; --borda:#1f2856; }
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; background:var(--bg);
+         color:var(--texto); min-height:100vh; }
+  .topo { height:150px; background:linear-gradient(110deg, var(--navy2), #1d2a78 55%, #2b3fb0); position:relative; overflow:hidden; }
+  .topo::after { content:""; position:absolute; inset:auto -10% -60% -10%; height:120%;
+                 background:radial-gradient(circle at 70% 0%, rgba(255,192,26,.35), transparent 60%); }
+  main { max-width:520px; margin:-62px auto 0; padding:0 16px 40px; position:relative; }
+  .avatar { width:116px; height:116px; border-radius:50%; display:block; margin:0 auto; border:5px solid var(--card);
+            box-shadow:0 8px 24px rgba(0,0,0,.25); background:var(--navy); }
+  h1 { text-align:center; font-size:22px; margin-top:12px; }
+  .frase { text-align:center; color:var(--sub); font-size:15px; margin-top:4px; }
+  .busca { margin:20px 0 14px; position:relative; }
+  .busca input { width:100%; padding:14px 16px 14px 44px; font-size:16px; border-radius:16px; border:1px solid var(--borda);
+                 background:var(--card); color:var(--texto); outline:none; }
+  .busca input:focus { border-color:var(--c2); box-shadow:0 0 0 3px rgba(96,165,250,.25); }
+  .busca svg { position:absolute; left:15px; top:50%; transform:translateY(-50%); opacity:.55; }
+  .item { display:flex; align-items:center; gap:14px; padding:10px 12px; margin-bottom:10px; border-radius:16px;
+          background:var(--card); border:1px solid var(--borda); text-decoration:none; color:inherit;
+          transition:transform .12s ease, box-shadow .12s ease; }
+  .item:hover, .item:focus-visible { transform:translateY(-1px); box-shadow:0 6px 18px rgba(11,18,56,.12); }
+  .item img { width:64px; height:64px; border-radius:12px; object-fit:contain; background:#fff; flex-shrink:0; }
+  .item .txt { flex:1; min-width:0; }
+  .item b { display:block; font-size:15px; line-height:1.3; }
+  .item small { display:block; color:var(--sub); font-size:13px; margin-top:3px; }
+  .item .preco { color:#0f9d58; font-weight:700; }
+  .item .seta { opacity:.4; flex-shrink:0; }
+  .fixo { background:linear-gradient(90deg, #1f8fe0, #2aabee); color:#fff; border:none; }
+  .fixo small { color:rgba(255,255,255,.85); }
+  .fixo .ico { width:64px; height:64px; border-radius:12px; display:grid; place-items:center; background:rgba(255,255,255,.18); flex-shrink:0; }
+  .num { display:inline-block; font-weight:800; color:var(--y2); margin-right:4px; }
+  .destaque { outline:3px solid var(--y2); }
+  .vazio { text-align:center; color:var(--sub); padding:24px 0; display:none; }
+  footer { text-align:center; color:var(--sub); font-size:12px; line-height:1.5; margin-top:22px; }
+</style>
+</head>
+<body>
+<div class="topo"></div>
+<main>
+  <img class="avatar" src="avatar.png" alt="Ofertas Tech">
+  <h1>@ofertas_tech.oficial</h1>
+  <p class="frase">🎮 Games e tech com desconto de verdade</p>
+
+  <div class="busca">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" inputmode="search" placeholder="Procure o nº do vídeo ou o produto…" autocomplete="off">
+  </div>
+
+  <a class="item fixo" href="https://t.me/ofertastechalpha" target="_blank" rel="noopener">
+    <span class="ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.7.2 1.4 1.5z"/></svg></span>
+    <span class="txt"><b>📲 Canal no Telegram: ofertas todo dia</b><small>Desconto conferido pelo histórico de preço. Grátis!</small></span>
+  </a>
+
+  <div id="lista"></div>
+  <p class="vazio" id="vazio">Nenhum produto encontrado. Confira o número no vídeo 😉</p>
+
+  <footer>#publi · Links de afiliado do Mercado Livre: comprando por eles você apoia o canal sem pagar nada a mais.<br>
+  Preço e estoque são os do dia do vídeo e podem mudar a qualquer momento.</footer>
+</main>
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const seta = '<svg class="seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+let itens = [];
+
+function desenhar(filtro) {
+  const q = norm(filtro).replace(/^#/, '').trim();
+  // só número ("2" ou "#2") = aquele produto; texto = busca no nome
+  const lista = /^\d+$/.test(q) ? itens.filter(p => String(p.numero) === q)
+                                : itens.filter(p => !q || norm(p.nome).includes(q));
+  document.getElementById('lista').innerHTML = lista.map(p => `
+    <a class="item" id="p${p.numero}" href="${esc(p.link)}" target="_blank" rel="noopener sponsored">
+      <img src="${esc(p.imagem)}" alt="" loading="lazy">
+      <span class="txt"><b><span class="num">#${p.numero}</span>${esc(p.nome)}</b>
+        <small>${p.preco ? `<span class="preco">${esc(p.preco)}</span>${p.desconto ? ' · ' + esc(p.desconto) + ' OFF' : ''} · ` : ''}${esc(p.data)}</small></span>
+      ${seta}
+    </a>`).join('');
+  document.getElementById('vazio').style.display = q && !lista.length ? 'block' : 'none';
+}
+
+fetch('produtos.json', {cache: 'no-store'}).then(r => r.json()).then(dados => {
+  itens = (dados.produtos || []).slice().sort((a, b) => b.numero - a.numero);
+  const q = document.getElementById('q');
+  const alvo = decodeURIComponent(location.hash.replace(/^#p?/, ''));
+  if (alvo) q.value = alvo;
+  desenhar(q.value);
+  q.addEventListener('input', () => desenhar(q.value));
+  if (alvo) document.querySelector('.item:not(.fixo)')?.classList.add('destaque');
+}).catch(() => {});
+</script>
+</body>
+</html>
